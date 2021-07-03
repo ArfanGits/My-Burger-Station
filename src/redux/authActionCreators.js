@@ -1,15 +1,5 @@
-import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
-export const authSuccess = (token, userId) => {
-    return {
-        type: actionTypes.AUTH_SUCCESS,
-        payload: {
-            token: token,
-            userId: userId,
-        }
-    }
-}
 
 export const auth = (email, password, mode) => dispatch => {
     const authData = {
@@ -24,9 +14,7 @@ export const auth = (email, password, mode) => dispatch => {
     } else {
         authUrl = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
     }
-    const API_KEY = "AIzaSyBv7bZesaOyi4x998HIf3hw6VBlsLwbJdE";
+    const API_KEY = "AIzaSyA4nq_JgYXTcrdRVz0kOnLtZDce_45J414";
     axios.post(authUrl + API_KEY, authData)
-        .then(response => {
-            dispatch(authSuccess(response.data.idToken, response.data.localId));
-        })
+        .then(response => console.log(response))
 }
